@@ -1,0 +1,40 @@
+{
+  "name": "simple-chat",
+  "version": "1.0.0",
+  "description": "Simple server push chat app",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "dev": "nodemon ./index.js"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "*.js",
+      "**/*.js"
+    ],
+    "ignore": [
+      "node_modules/",
+      "**/__tests__/**",
+      "*.test.js",
+      "*.spec.js"
+    ]
+  },
+  "eslintConfig": {
+    "rules": {
+      "no-console": "off"
+    }
+  },
+  "author": "Iulian Webdev",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "jest": "^25.1.0",
+    "nodemon": "^2.0.2"
+  }
+}
