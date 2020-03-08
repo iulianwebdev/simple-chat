@@ -1,9 +1,14 @@
-const express = require('express')
-
-const router = express.Router()
-
-router.get('/', (req, res) => {
-  res.json({ chats: [1, 2, 3, 4] })
-})
+const Chat = require('../services/chat')
+const chat = new Chat()
+/**
+ *
+ * @param {SocketIO} socket
+ */
+const router = function (socket) {
+  socket.on('user-connect', (userName) => {
+    chat.addUser(userName)
+    socket.emit('user-connected', userName)
+  })
+}
 
 module.exports = router
