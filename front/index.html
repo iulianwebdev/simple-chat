@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Simple Chat</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles.css">
+    <script type="text/javascript" src="ajax.js"></script>
+    <script type="text/javascript" src="Chat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/socket.io-client@2/dist/socket.io.js"></script>
+</head>
+<body class="h-100">
+    <div class="container-fluid h-100">
+        <div class="row justify-content-center h-100">
+            <div class="col-4">
+                <h3 class="text-center">Sidebar</h3>
+            </div>
+            <div class="col ">
+                <div class="container h-100 chat-wrapper">
+                    <div class="row h-100 chat-display">
+                        <div class="col">
+                            
+                            <h3 class="text-center">Main Window</h3>
+                        </div>
+                    </div>
+                    <div class="row align-items-bottom chat-input-container">
+                        
+                        <div class="form-group chat-input-wrapper">
+                            <form action="/" method="POST" id="chat-form" class="h-100">
+                                <textarea class="form-control" name="chat-input" id="chat-input" rows="3"></textarea>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="scripts.js"></script>
+</body>
+</html>
