@@ -10,7 +10,7 @@ With the following features:
 
 ## Steps
 
-* [ ] ℹ Create scaffolding 
-* [ ] 👷 Create front end and backend apps
+* [x] ℹ Create scaffolding 
+* [x] 👷 Create front end and backend apps folder structure
 * [ ] ☃ Add user enter chat functionality
 * [ ] ☺ Add active users list functionality
