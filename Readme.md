@@ -1,10 +1,11 @@
-# Meower - Twitter for Cats
+# Simple chat socket.io demo
 
-A basic twitter clone built to demonstrate the full stack 🥞 (client, server, database).
+A basic chat like functionality with socket.io and mongodb 🥞 (client, server, database).
 
 With the following features:
 
 * Simple socket.io implementation for node.js
+* Saving state in MongoDb
 
 
 ## Steps
