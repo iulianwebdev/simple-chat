@@ -14,3 +14,5 @@ With the following features:
 * [x] 👷 Create front end and backend apps folder structure
 * [ ] ☃ Add user enter chat functionality
 * [ ] ☺ Add active users list functionality
+* [ ] 🍿 Add MongoDb database
+* [ ] 💾 Save state to the database (history)
