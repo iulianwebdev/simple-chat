@@ -6,8 +6,13 @@ const chat = new Chat()
  */
 const router = function (socket) {
   socket.on('user-connect', (userName) => {
-    chat.addUser(userName)
-    socket.emit('user-connected', userName)
+    if (!socket.username) {
+      socket.username = userName
+      chat.addToUsers(userName)
+    }
+    console.log(socket.username, chat.getUsers.length)
+    socket.emit('user-connected', chat.getUsers())
+    socket.broadcast.emit('user-connected', chat.getUsers())
   })
 }
 

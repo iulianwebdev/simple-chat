@@ -1,10 +1,6 @@
 const ENTER_KEY_CODE = 13
 const Chat = function () {
   /**
-   * @type {Function}
-   */
-  this.ajax = null
-  /**
    * @type {String}
    */
   this.name = null
@@ -13,24 +9,33 @@ const Chat = function () {
    */
   this.form = null
   /**
+   * @type {Object[]}
+   */
+  this.lobbyUsers = []
+  /**
    * @type {HTMLTextAreaElement}
    */
   this.text = null
-  /**
-   * @type {String}
-   */
-  this.userName = ''
-}
+  Object.defineProperty(this, 'users', {
+    get () {
+      return this.lobbyUsers
+    },
+    set (user) {
+      this.lobbyUsers.push(user)
+      console.log('set called', this.lobbyUsers)
 
-Chat.prototype.setAjax = function (ajaxFunc) {
-  this.ajax = ajaxFunc
-  return this
+      document.dispatchEvent(new CustomEvent('lobby-render', {
+        bubbles: false,
+        detail: {
+          template: this.renderUsers()
+        }
+      }))
+    }
+  })
 }
 
 Chat.prototype.init = function (name) {
-  if (!this.ajax) {
-    throw new Error('No ajax agent set.')
-  }
+
   this.name = name
   this.chatForm = document.getElementById('chat-form')
   this.text = document.getElementById('chat-input')
@@ -49,10 +54,34 @@ Chat.prototype.valid = function () {
   return this.text.value.trim().length > 0
 }
 
-Chat.prototype.setActiveUser = function (user) {
-  this.activeUser = user
+Chat.prototype.addUsers = function (users) {
+  this.lobbyUsers.splice(0)
+  for (var i in users) {
+    this.users = users[i]
+  }
+}
+
+Chat.prototype.loginAs = function (userName) {
+  var user = window.localStorage.getItem('loggedInChatUser')
+  if (!user) {
+    window.localStorage.setItem('loggedInChatUser', userName)
+  }
+  this.lobbyUsers.forEach(function (user) {
+    user.active = false
+    if (user.name === userName) {
+      user.active = true
+    }
+  })
 }
 
 Chat.prototype.send = function () {
   this.ajax(this.text.value)
+}
+
+Chat.prototype.renderUsers = function () {
+  return '<ul>' + this.lobbyUsers.reduce(function (acc, user) {
+    var activeClass = user.active ? 'active' : ''
+    acc += '<li class="' + activeClass + '">' + user.name + '</li>'
+    return acc
+  }, '') + '</ul>'
 }
